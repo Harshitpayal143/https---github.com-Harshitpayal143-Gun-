@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.gun {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 80px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><rect x="30" y="30" width="40" height="20" fill="%23333"/><rect x="70" y="35" width="20" height="10" fill="%23333"/><rect x="20" y="35" width="10" height="10" fill="%23333"/></svg>');
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+.target {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="%23ff0000"/><circle cx="30" cy="30" r="20" fill="%23fff"/><circle cx="30" cy="30" r="10" fill="%23ff0000"/></svg>');
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.target:hover {
+    transform: scale(1.1);
+}
+
+.score, .ammo {
+    position: absolute;
+    top: 20px;
+    color: white;
+    font-size: 24px;
+}
+
+.score {
+    left: 20px;
+}
+
+.ammo {
+    right: 20px;
+}
+
+#reload {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reload:hover {
+    background-color: #45a049;
+}
+
+.bullet-hole {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+@keyframes recoil {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+
+.recoil {
+    animation: recoil 0.2s ease-out;
+}
+
+@keyframes explosion {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.explosion {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="%23ffcc00"/></svg>');
+    animation: explosion 0.5s forwards;
+    z-index: 8;
+}
